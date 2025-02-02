@@ -1,118 +1,98 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useState } from 'react';
+import { SafeAreaView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import Detail from './src/screens/Detail/Detail';
+import { ContextProvider } from './src/context/Context';
+import Favorites from './src/screens/Favorites/Favorites';
+import HeartIcon from './src/components/Icons/HeartIcon';
+import PlanetIcon from './src/components/Icons/PlanetIcon';
+import Landing from './src/components/Landing/Landing';
+import Home from './src/screens/Home/Home';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const StackNavigator = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <Stack.Navigator initialRouteName="PlanetList">
+      <Stack.Screen name="PlanetList"
+        component={Home}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name="PlanetDetail"
+        component={Detail}
+        options={{
+          headerShown: false
+        }} />
+    </Stack.Navigator>
+  );
+}
+
+function AppTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarLabelStyle: {
+          fontSize: 14,
+          fontWeight: 'bold',
+          letterSpacing: 1
+        },
+        tabBarActiveTintColor: '#FFFFFF',
+        tabBarInactiveTintColor: '#A9A9A9',
+        tabBarStyle: {
+          backgroundColor: '#33384C',
+          height: 55,
+          borderColor: '#33384C',
+        },
+      }}
+    >
+      <Tab.Screen
+        name="Planets"
+        component={StackNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <PlanetIcon color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={Favorites}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <HeartIcon size={32} color={color === "#FFFFFF" ? "red" : color} backgroundColor={color === "#FFFFFF" ? "red" : "#33384C"} />
+          ),
+        }} />
+    </Tab.Navigator>
   );
 }
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const [landingScreen, setLandingScreen] = useState(true)
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <ContextProvider>
+        <SafeAreaView style={{ flex: 1 }}>
+          {
+            landingScreen ?
+              <Landing setLanding={setLandingScreen} />
+              :
+              <AppTabs />
+          }
+        </SafeAreaView>
+      </ContextProvider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
