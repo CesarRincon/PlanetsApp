@@ -2,96 +2,130 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Getting Started
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Step 1: Install dependencies
 
-## Step 1: Start Metro
+En la raiz del proyecto ejecuta
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
-
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+```
+yarn
 ```
 
 ## Step 2: Build and run your app
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+Para ejecutar el proyecto
 
 ### Android
 
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
+# Using Yarn
+```
 yarn android
 ```
 
-### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+# INGLES
 
-```sh
-bundle install
-```
+# Dependencies
 
-Then, and every time you update your native dependencies, run:
+## 1. @react-native-async-storage/async-storage
 
-```sh
-bundle exec pod install
-```
+Purpose: Allows storing data locally on the device asynchronously.
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+Usage: Used to save the list of favorite planets and restore it when the app starts.
 
-```sh
-# Using npm
-npm run ios
+## 2. @react-navigation/native
 
-# OR using Yarn
-yarn ios
-```
+Purpose: The core of React Navigation, used for screen navigation in the app.
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+Usage: Manages the main navigation of the application.
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 3. @react-navigation/bottom-tabs
 
-## Step 3: Modify your app
+Purpose: Provides a bottom navigation bar.
 
-Now that you have successfully run the app, let's make changes!
+Usage: Used to switch between different sections of the app, such as the planets list and favorites.
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## 4. @react-navigation/stack
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+Purpose: Enables stack (screen stack) navigation within the app.
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Usage: Used for transitioning between screens, such as opening a planet's details.
 
-## Congratulations! :tada:
+## 5. react-native-fast-image
 
-You've successfully run and modified your React Native App. :partying_face:
+Purpose: Provides an optimized solution for loading and handling images in React Native.
 
-### Now what?
+Usage: Used to improve performance when loading images of planets.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+## 6. react-native-svg
 
-# Troubleshooting
+Purpose: Allows rendering SVG graphics in React Native.
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+Usage: Used to display custom icons within the application.
 
-# Learn More
+# Structure
 
-To learn more about React Native, take a look at the following resources:
+The app structure was based on the required views: a home screen displaying a list of planets, allowing users to search for a specific planet and mark it as a favorite.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+A tab-based navigation system was implemented to switch between the main views: the planets list (home) and the favorites list.
+
+Initially, useContext was used to manage state globally within the app. Later, Async Storage was added to ensure favorite planets persist even after closing the app.
+
+The main planets list was manually created since no API provided the necessary data.
+
+The API https://api.api-ninjas.com/v1/planets was used to fetch detailed information for each planet. However, as it only provides data and no images, the planet image in the details view is the same as in the planet list card.
+
+# ESPAÑOL
+
+# Dependencias
+
+## 1. @react-native-async-storage/async-storage
+
+Propósito: Permite almacenar datos localmente en el dispositivo de manera asíncrona.
+
+Uso: La utilizo para guardar la lista de planetas favoritos y restaurarla cuando se inicia la aplicación y así tener permanencia de los datos.
+
+## 2. @react-navigation/native
+
+Propósito: Se utiliza para la navegación entre pantallas en la app.
+
+Uso: Gestión de la navegación principal de la aplicación.
+
+## 3. @react-navigation/bottom-tabs
+
+Propósito: Proporciona una barra de navegación en la parte inferior de la pantalla.
+
+Uso: Se utiliza para cambiar entre las diferentes secciones de la app, como la lista de planetas y favoritos.
+
+## 4. @react-navigation/stack
+
+Propósito: Permite la navegación tipo stack dentro de la app.
+
+Uso: Se usa para la transición entre pantallas, como al abrir los detalles de un planeta.
+
+## 5. react-native-fast-image
+
+Propósito: Proporciona una solución optimizada para cargar y manejar gift.
+
+Uso: La utilizo para poder usar gift en la aplicación, aunque sirve para mejorar el rendimiento de las imagenes de la app.
+
+## 6. react-native-svg
+
+Propósito: Permite crear SVG como componentes.
+
+Uso: Lo use para crear iconos personalizados en la app.
+
+# Estructura
+
+Para la estructura la de la app me base en las vistas que debía realizar, un home donde tenga una lista de planetas y puedas buscar el planeta de tu gusto, además de poder agregarlo como favorito
+
+Decidí que manejaria una navegacion por taps entre las principales vistas que vendria siendo la lista planetas(home) y la lista de favoritos(favorites)
+
+Para guardar la información en un principio solo utilice useContext y así poder tenerla en cualquier parte de la app, luego quise que los datos de favoritos tuviese permanencia y agregue el uso de async storage
+
+La lista de planetas principales la busque y cree ya que no habia una api donde me trajera lo que necesitaba
+
+Utilice **https://api.api-ninjas.com/v1/planets** para traer el detalle de cada planeta, como solo me trae datos y ninguna imagen, la imagen en el detalle es la misma que en la card de la lista de planetas
+
+
+
