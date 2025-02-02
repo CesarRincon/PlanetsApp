@@ -33,7 +33,7 @@ export default function Detail({ route }: DetailProps) {
             </View>
             <View style={stylesDetail.containerDistance}>
                 <Text style={stylesDetail.textTitleDistance}>Distance from Earth</Text>
-                <Text style={stylesDetail.textSubtitleDistance}>{data?.distance_light_year}</Text>
+                <Text style={stylesDetail.textSubtitleDistance}>{name === 'Earth' ? 'You live here' :data?.distance_light_year}</Text>
             </View>
             <View style={stylesDetail.containerDescription}>
                 <View style={stylesDetail.containerItem}>
@@ -60,7 +60,7 @@ export default function Detail({ route }: DetailProps) {
                     </View>
                     <View>
                         <Text style={stylesDetail.titleItem}>Radius:</Text>
-                        <Text style={stylesDetail.descriptionItem}>{data?.radius} of the Earth</Text>
+                        <Text style={stylesDetail.descriptionItem}>{name === 'Earth' ? data?.radius : data?.radius + ' of the Earth'}</Text>
                     </View>
                 </View>
                 <View style={stylesDetail.containerItem}>
@@ -69,7 +69,7 @@ export default function Detail({ route }: DetailProps) {
                     </View>
                     <View>
                         <Text style={stylesDetail.titleItem}>Mass:</Text>
-                        <Text style={stylesDetail.descriptionItem}>{data?.mass} of the Earth</Text>
+                        <Text style={stylesDetail.descriptionItem}>{name === 'Earth' ? data?.mass : data?.mass + ' of the Earth'}</Text>
                     </View>
                 </View>
             </View>
