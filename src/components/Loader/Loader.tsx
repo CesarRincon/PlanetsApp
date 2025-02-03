@@ -1,6 +1,7 @@
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
+import { loaderStyles as styles } from './LoaderStyles';
 
 const Loader = () => {
     return (
@@ -16,18 +17,5 @@ const Loader = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#33384C',
-    },
-    image: {
-        width: 400,
-        height: 400,
-    },
-});
 
 export default Loader;
