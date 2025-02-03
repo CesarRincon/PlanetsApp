@@ -1,5 +1,6 @@
-import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
+import { View, Text, TextInput, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { planetListStyles as styles } from './PlanetListStyles';
 
 const PlanetList: React.FC<PlanetListProps> = ({ data, renderItemComponent }) => {
     const [stateData, setStateData] = useState<Planet[]>(data);
@@ -46,33 +47,6 @@ const PlanetList: React.FC<PlanetListProps> = ({ data, renderItemComponent }) =>
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        height: '100%',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    searchInput: {
-        backgroundColor: '#fff',
-        width: '90%',
-        borderRadius: 24,
-        paddingLeft: 15,
-        color: '#000',
-        marginBottom: 10,
-        height: 40,
-    },
-    list: {
-        width: '100%',
-    },
-    noResults: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    noResultsText: {
-        color: '#fff',
-    },
-});
+
 
 export default PlanetList;
