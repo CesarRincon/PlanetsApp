@@ -1,9 +1,8 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import BackIcon from '../Icons/BackIcon';
 import { useNavigation } from '@react-navigation/native';
-
-
+import { headerStyles as styles } from './HeaderStyles';
 
 const Header: React.FC<HeaderProps> = ({ title, backIcon = true, transparent = false }) => {
     const navigation = useNavigation();
@@ -23,28 +22,5 @@ const Header: React.FC<HeaderProps> = ({ title, backIcon = true, transparent = f
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        height: 50,
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-    },
-    backButton: {
-        position: 'absolute',
-        left: 0,
-    },
-    title: {
-        color: '#ffff',
-        fontWeight: '600',
-        fontSize: 18,
-        letterSpacing: 1,
-    },
-});
 
 export default Header;
