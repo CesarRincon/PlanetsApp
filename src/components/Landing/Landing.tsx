@@ -1,6 +1,7 @@
-import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import NextIcon from '../Icons/NextIcon';
+import { landingStyles as styles } from './LandingStyles';
 
 const Landing: React.FC<LandingProps> = ({ setLanding }) => {
     return (
@@ -18,31 +19,5 @@ const Landing: React.FC<LandingProps> = ({ setLanding }) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-    },
-    button: {
-        position: 'absolute',
-        zIndex: 99999,
-        bottom: '15%',
-        width: '100%',
-        paddingLeft: 15,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 20,
-    },
-    text: {
-        color: '#ffff',
-        fontSize: 60,
-        letterSpacing: 1,
-        fontWeight: '200',
-    },
-});
 
 export default Landing;
